@@ -7,6 +7,7 @@ import cors from 'cors';
 import _ from 'lodash';
 import router from './routes';
 
+
 const app = express();
 
 app.use(
@@ -26,6 +27,8 @@ app.use(compression());
 app.use(express.json());
 
 
+import './databases/mongodb';
+import './databases/redis';
 
 // utf8
 app.use(express.urlencoded({ extended: true }));
