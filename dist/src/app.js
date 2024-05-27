@@ -22,6 +22,7 @@ app.use((0, morgan_1.default)('dev'));
 app.use((0, helmet_1.default)());
 app.use((0, compression_1.default)());
 app.use(express_1.default.json());
+require("./databases/mongodb");
 // utf8
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use('/', routes_1.default);

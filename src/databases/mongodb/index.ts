@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const connectString = process.env.MONGO_URI as string;
+const connectString = process.env.MONGO_URL as string;
 
 class Database {
   static instance: any;
@@ -8,7 +8,7 @@ class Database {
       this.connect();
   }
 
-  connect(type = "mongodb") {
+  connect() {
       if (1 === 1) {
           mongoose.set("debug", true);
           mongoose.set("debug", { color: true });
@@ -17,7 +17,7 @@ class Database {
       mongoose
           .connect(connectString)
           .then((_) =>
-            console.log('call success')
+            console.log('MongoDB: started successfully')
           )
           .catch((err) => console.log(`Error Connect!`));
   }
