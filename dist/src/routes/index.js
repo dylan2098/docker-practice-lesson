@@ -36,9 +36,10 @@ const redis = __importStar(require("redis"));
 const express_1 = require("express");
 const router = (0, express_1.Router)();
 router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log('APIs start successfully');
-    const client = redis.createClient();
-    console.log('call redis client');
+    const client = redis.createClient({
+        url: process.env.REDIS_URL
+    });
+    console.log('Redis: Started successfully');
     client.on("error", function (error) {
         console.error("Redis connect error", error);
     });
@@ -46,6 +47,7 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         console.info("Redis connected successfully!");
     });
     yield client.connect();
+    console.log('APIs start successfully');
     return res.json({
         error: false,
         message: 'Welcome'

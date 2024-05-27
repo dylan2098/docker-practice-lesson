@@ -9,17 +9,14 @@ class Database {
   }
 
   connect() {
-      if (1 === 1) {
-          mongoose.set("debug", true);
-          mongoose.set("debug", { color: true });
-      }
 
+    console.log('connection string: ' + connectString);
       mongoose
           .connect(connectString)
           .then((_) =>
             console.log('MongoDB: started successfully')
           )
-          .catch((err) => console.log(`Error Connect!`));
+          .catch((err) => console.log(`MongoDB: Error Connect!: ${err.message}`));
   }
 
   static getInstance() {

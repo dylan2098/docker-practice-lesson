@@ -10,14 +10,11 @@ class Database {
         this.connect();
     }
     connect() {
-        if (1 === 1) {
-            mongoose_1.default.set("debug", true);
-            mongoose_1.default.set("debug", { color: true });
-        }
+        console.log('connection string: ' + connectString);
         mongoose_1.default
             .connect(connectString)
             .then((_) => console.log('MongoDB: started successfully'))
-            .catch((err) => console.log(`Error Connect!`));
+            .catch((err) => console.log(`MongoDB: Error Connect!: ${err.message}`));
     }
     static getInstance() {
         if (!Database.instance) {

@@ -4,11 +4,12 @@ import { Router } from 'express';
 const router = Router();
 
 router.get('/', async (req,res) => {
-  console.log('APIs start successfully');
 
-    const client = redis.createClient();
+    const client = redis.createClient({
+      url: process.env.REDIS_URL
+    });
 
-    console.log('call redis client');
+    console.log('Redis: Started successfully');
 
     client.on("error", function (error) {
         console.error("Redis connect error", error);
@@ -20,6 +21,8 @@ router.get('/', async (req,res) => {
 
 
     await client.connect();
+
+    console.log('APIs start successfully');
 
   return res.json({
     error: false,
