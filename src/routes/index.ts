@@ -9,8 +9,6 @@ router.get('/', async (req,res) => {
       url: process.env.REDIS_URL
     });
 
-    console.log('Redis: Started successfully');
-
     client.on("error", function (error) {
         console.error("Redis connect error", error);
     });
