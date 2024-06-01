@@ -15,10 +15,9 @@ services:
       retries: 5
     command: ["redis-server"]
 
-  app-nodejs:
+  nodeserver:
     build:
       context: ./
-      dockerfile: Dockerfile
     restart: unless-stopped
     environment:
       - NODE_ENV=development
@@ -28,3 +27,9 @@ services:
       - REDIS_URL=redis://redis:6379
     ports:
       - 8080:8080
+  nginx:
+    restart: always
+    build:
+        context: ./nginx
+    ports:
+        - "80:80"
